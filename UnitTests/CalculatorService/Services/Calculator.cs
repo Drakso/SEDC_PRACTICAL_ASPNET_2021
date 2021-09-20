@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CalculatorService.Utils;
+using CalculatorService.Validators;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,34 +18,50 @@ namespace CalculatorService.Services
 	// Our implementation ( The business logic of our project )
 	public class Calculator
 	{
-		private readonly int Range = 1000000;
+
+		// Controller:
+		// new Calculator(<PROVIDE VALIDATOR AND UTILITIES HERE>)
+
+		private IValidator _validator;
+		private IUtilities _utilities;
+
+		public Calculator(IValidator validator, IUtilities utilities)
+		{
+			// We decide to resolve ( create ) the dependencies
+			// This creates tight coupling. We must change these every time we change the implementation of them as well
+			//_validator = new Validator();
+			//_utilities = new Utilities();
+
+			_validator = validator;
+			_utilities = utilities;
+		}
 
 		public int Sum(int number1, int number2)
 		{
 			var numbers = new List<int>() { number1, number2 };
-			CheckIfNumberIsInRange(numbers);
-			CheckIfNumberIsNegative(numbers);
+			_validator.CheckIfNumberIsInRange(numbers);
+			_validator.CheckIfNumberIsNegative(numbers);
 
 			return number1 + number2;
 		}
 
-		public int SumWithStrings(string number1, string number2)
+		public int Sum(string number1, string number2)
 		{
-			var convertedNumber1 = ConvertStringToInt(number1);
-			var convertedNumber2 = ConvertStringToInt(number2);
+			var convertedNumber1 = _utilities.ConvertStringToInt(number1);
+			var convertedNumber2 = _utilities.ConvertStringToInt(number2);
 
 
 			var numbers = new List<int>() { convertedNumber1, convertedNumber2 };
-			CheckIfNumberIsInRange(numbers);
-			CheckIfNumberIsNegative(numbers);
+			_validator.CheckIfNumberIsInRange(numbers);
+			_validator.CheckIfNumberIsNegative(numbers);
 
 			return convertedNumber1 + convertedNumber2;
 		}
 
-		public int SumWithList(List<int> numbers)
+		public int Sum(List<int> numbers)
 		{
-			CheckIfNumberIsInRange(numbers);
-			CheckIfNumberIsNegative(numbers);
+			_validator.CheckIfNumberIsInRange(numbers);
+			_validator.CheckIfNumberIsNegative(numbers);
 
 			var sum = 0;
 			foreach (var number in numbers)
@@ -51,30 +69,6 @@ namespace CalculatorService.Services
 				sum = sum + number;
 			}
 			return sum;
-		}
-
-		private void CheckIfNumberIsInRange(List<int> numbers)
-		{
-			foreach (var number in numbers)
-			{
-				if (number > Range) throw new Exception($"You can't enter numbers over the {Range} range.");
-			}
-			
-		}
-
-		private void CheckIfNumberIsNegative(List<int> numbers)
-		{
-			foreach (var number in numbers)
-			{
-				if (number < 0) throw new Exception("You can't enter a negative number.");
-			}
-		}
-
-		private int ConvertStringToInt(string strNumber)
-		{
-			var isConverted = int.TryParse(strNumber, out var result);
-			if (isConverted) return result;
-			throw new Exception("Convert failed. You must enter a valid number!");
 		}
 	}
 }
