@@ -9,3 +9,4 @@
   * UniqueCode
   * DateCreated
 * Create only the folders, projects and domain classes only
+* **BONUS**: Add it on GitHub
