@@ -17,17 +17,19 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebUI", "WebUI", "{7BCF9232-3CEE-4214-AD41-B41FEF7436BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{E4811BA1-C2A9-4AC0-933F-6561138D43B0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{E4811BA1-C2A9-4AC0-933F-6561138D43B0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistence", "Persistence\Persistence.csproj", "{D471E515-DCC3-49C3-8747-3FB94F3ECE5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Persistence", "Persistence\Persistence.csproj", "{D471E515-DCC3-49C3-8747-3FB94F3ECE5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastrucutre", "Infrastrucutre\Infrastrucutre.csproj", "{429D4EBF-1C28-467F-AF6C-1A0ED710CF58}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastrucutre", "Infrastrucutre\Infrastrucutre.csproj", "{429D4EBF-1C28-467F-AF6C-1A0ED710CF58}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "Application\Application.csproj", "{CC931355-9541-42E6-89CB-F47B357199B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "Application\Application.csproj", "{CC931355-9541-42E6-89CB-F47B357199B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{F1667F41-52D4-421F-B0DD-22F8E16240DB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{F1667F41-52D4-421F-B0DD-22F8E16240DB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemindersApp.Tests", "RemindersApp.Tests\RemindersApp.Tests.csproj", "{ADF0A829-7EFB-4606-82D6-7A9560EAEDC7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RemindersApp.Tests", "RemindersApp.Tests\RemindersApp.Tests.csproj", "{ADF0A829-7EFB-4606-82D6-7A9560EAEDC7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Examples", "Examples\Examples.csproj", "{3026585D-F17A-4DB1-B8B1-84405038E051}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{ADF0A829-7EFB-4606-82D6-7A9560EAEDC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADF0A829-7EFB-4606-82D6-7A9560EAEDC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADF0A829-7EFB-4606-82D6-7A9560EAEDC7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3026585D-F17A-4DB1-B8B1-84405038E051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3026585D-F17A-4DB1-B8B1-84405038E051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3026585D-F17A-4DB1-B8B1-84405038E051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3026585D-F17A-4DB1-B8B1-84405038E051}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -74,6 +80,7 @@ Global
 		{CC931355-9541-42E6-89CB-F47B357199B6} = {0D272DFE-D1B6-4F60-94C0-13564F9E86B3}
 		{F1667F41-52D4-421F-B0DD-22F8E16240DB} = {7BCF9232-3CEE-4214-AD41-B41FEF7436BF}
 		{ADF0A829-7EFB-4606-82D6-7A9560EAEDC7} = {840901A4-D1DE-447A-B543-58C3FBCE66CA}
+		{3026585D-F17A-4DB1-B8B1-84405038E051} = {51CF8189-485A-41FD-BF5A-2158E62180AE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A1FE1F3B-F8D4-41C3-8E25-5401B5DF1F83}
