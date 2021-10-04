@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace Application.Services
 {
-	class IAuthenticationService
+	public interface IAuthenticationService
 	{
+		string GenerateToken(int userId);
+		int GetUserIdFromToken(string token);
 	}
 }

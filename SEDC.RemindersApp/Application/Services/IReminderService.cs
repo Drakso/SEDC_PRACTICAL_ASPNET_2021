@@ -8,7 +8,7 @@ namespace Application
 {
 	public interface IReminderService
 	{
-		List<ReminderDTO> GetAll();
+		List<ReminderDTO> GetAll(int userId);
 		bool Insert(ReminderDTO reminder);
 		bool Delete(int reminderId);
 	}

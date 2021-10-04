@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Application.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Persistence;
 using Persistence.Repositories;
@@ -23,6 +24,7 @@ namespace Application.Configurations
 			services.AddTransient<IReminderService, ReminderService>();
 			services.AddTransient<IUserRepository, UserRepository>();
 			services.AddTransient<IReminderRepository, ReminderRepository>();
+			services.AddTransient<IAuthenticationService, AuthenticationService>();
 
 			// Add external configuration
 			// External configuraiton for context of Entity Framework

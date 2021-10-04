@@ -16,9 +16,9 @@ namespace Persistence.Repositories
 			_context = context;
 		}
 
-		public IEnumerable<Reminder> GetAll()
+		public IEnumerable<Reminder> GetAll(int userId)
 		{
-			return _context.Reminders.Include(x => x.User);
+			return _context.Reminders.Include(x => x.User).Where(x => x.UserId == userId);
 		}
 
 		public Reminder GetById(int id)

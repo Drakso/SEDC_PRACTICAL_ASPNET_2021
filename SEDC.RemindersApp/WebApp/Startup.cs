@@ -2,6 +2,7 @@ using Application;
 using Application.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -43,7 +44,7 @@ namespace WebApp
 			// Using AppSettings right away
 			var appSettings = appConfig.Get<AppSettings>();
 
-
+			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 			DiModule.Register(services, appSettings.ConnectionString);
 
 			// Add automapper configuration for dependency Injection
@@ -79,7 +80,7 @@ namespace WebApp
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					pattern: "{controller=Users}/{action=Login}/{id?}");
 			});
 		}
 	}

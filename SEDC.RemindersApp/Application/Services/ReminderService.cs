@@ -28,9 +28,9 @@ namespace Application
 			_reminderRepository = reminderRepository;
 		}
 
-		public List<ReminderDTO> GetAll()
+		public List<ReminderDTO> GetAll(int userId)
 		{
-			return _mapper.Map<List<ReminderDTO>>(_reminderRepository.GetAll());
+			return _mapper.Map<List<ReminderDTO>>(_reminderRepository.GetAll(userId));
 		}
 
 		public bool Insert(ReminderDTO reminder)

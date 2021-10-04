@@ -9,7 +9,7 @@ namespace Persistence.Repositories
 {
 	public interface IReminderRepository
 	{
-		IEnumerable<Reminder> GetAll();
+		IEnumerable<Reminder> GetAll(int userId);
 		Reminder GetById(int id);
 		int Insert(Reminder reminder);
 		int Update(Reminder reminder);

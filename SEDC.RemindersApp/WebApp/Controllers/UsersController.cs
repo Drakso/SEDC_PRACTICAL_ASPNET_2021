@@ -1,4 +1,6 @@
 ﻿using Application;
+using Application.Services;
+using Application.Utilities;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,13 +13,16 @@ namespace WebApp.Controllers
 {
 	public class UsersController : Controller
 	{
+		private readonly IAuthenticationService _authenticationService;
 		private readonly IUserService _userService;
 		private readonly IMapper _mapper;
+		private readonly string _token = "token";
 
-		public UsersController(IUserService userService, IMapper mapper)
+		public UsersController(IUserService userService, IMapper mapper, IAuthenticationService authenticationService)
 		{
 			_userService = userService;
 			_mapper = mapper;
+			_authenticationService = authenticationService;
 		}
 
 		// The user asks for the login page
@@ -25,6 +30,11 @@ namespace WebApp.Controllers
 		[HttpGet]
 		public IActionResult Login()
 		{
+			var tokenFromCookie = Request.GetCookie(_token);
+			var userId = _authenticationService.GetUserIdFromToken(tokenFromCookie);
+
+			if (tokenFromCookie != "" && userId > 0) return RedirectToAction("Index", "Reminders");
+
 			return View();
 		}
 
@@ -40,12 +50,19 @@ namespace WebApp.Controllers
 				Description = "Incorrect username or password was entered. Please make sure that you have an account and that you are entering your username and password correctly!"
 			});
 
+			Response.SetCookie(_token, loggedInUser.Id);
+
 			return RedirectToAction("Index", "Reminders");
 		}
 
 		[HttpGet]
 		public IActionResult Register()
 		{
+			var tokenFromCookie = Request.GetCookie(_token);
+			var userId = _authenticationService.GetUserIdFromToken(tokenFromCookie);
+
+			if (tokenFromCookie != "" && userId > 0) return RedirectToAction("Index", "Reminders");
+
 			return View();
 		}
 
@@ -59,7 +76,17 @@ namespace WebApp.Controllers
 				Description = "Registering was not successfull! Please make sure you don't already have an account and that the data you provided is correct!"
 			});
 
+			Response.SetCookie(_token, loggedInUser.Id);
+
 			return RedirectToAction("Index", "Reminders");
+		}
+
+		[HttpGet]
+		public IActionResult Logout()
+		{
+			Response.Cookies.Delete(_token);
+
+			return RedirectToAction("Login", "Users");
 		}
 	}
 }
