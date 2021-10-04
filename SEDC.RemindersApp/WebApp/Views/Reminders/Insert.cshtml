@@ -1,0 +1,37 @@
+﻿@model ReminderViewModel
+
+<h1> Add reminder: </h1>
+
+<form asp-controller="reminders" asp-action="Insert" method="post">
+	<div class="row">
+		<div class="col-md-3">
+			<input asp-for="Title"
+				   type="text"
+				   placeholder="Title"
+				   class="form-control" />
+		</div>
+		<div class="col-md-3">
+			<input asp-for="Description"
+				   type="text"
+				   placeholder="Description"
+				   class="form-control" />
+		</div>
+		<div class="col-md-3">
+			<div class="input-group">
+				<select asp-for="Priority"
+						type="Priority"
+						class="form-control"
+						asp-items="Html.GetEnumSelectList<Domain.Priority>()">
+				</select>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<input asp-for="DateTime"
+				   type="text"
+				   placeholder="DateTime"
+				   class="form-control" />
+		</div>
+	</div>
+
+	<button type="submit" class="btn btn-success">Create</button>
+</form>

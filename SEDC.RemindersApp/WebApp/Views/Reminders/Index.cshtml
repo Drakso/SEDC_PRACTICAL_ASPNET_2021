@@ -1,1 +1,14 @@
-﻿<h1> Welocme back! Here are your reminders </h1>
+﻿@model RemindersHomeViewModel
+
+<h1> Welocme back! Here are your reminders </h1>
+<a asp-controller="reminders" asp-action="insert">New Reminder</a>
+
+@foreach (var reminder in Model.Reminders)
+{
+<div class="row" style="background-color: @reminder.Color;">
+	<div class="col-md-2">@reminder.PriorityName</div>
+	<div class="col-md-3">@reminder.Title</div>
+	<div class="col-md-4">@reminder.Description</div>
+	<div class="col-md-3">@reminder.DateTime</div>
+</div>
+}

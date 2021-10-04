@@ -1,4 +1,5 @@
 ﻿using Application;
+using Application.Utilities;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -36,6 +37,20 @@ namespace WebApp.Configurations
 				.ForMember(dest => dest.Username, x => x.MapFrom(src => src.Username))
 				.ForMember(dest => dest.Password, x => x.MapFrom(src => src.Password));
 
+			CreateMap<ReminderDTO, ReminderViewModel>()
+				.ForMember(dest => dest.Title, x => x.MapFrom(src => src.Title))
+				.ForMember(dest => dest.Description, x => x.MapFrom(src => src.Description))
+				.ForMember(dest => dest.DateTime, x => x.MapFrom(src => src.DateTime))
+				.ForMember(dest => dest.Priority, x => x.MapFrom(src => src.Priority))
+				.ForMember(dest => dest.PriorityName, x => x.MapFrom(src => src.Priority.GetName()))
+				.ForMember(dest => dest.Color, x => x.MapFrom(src => src.Priority.GetColor()))
+				.ReverseMap()
+				.ForMember(dest => dest.Title, x => x.MapFrom(src => src.Title))
+				.ForMember(dest => dest.Description, x => x.MapFrom(src => src.Description))
+				.ForMember(dest => dest.Priority, x => x.MapFrom(src => src.Priority))
+				.ForMember(dest => dest.DateTime, x => x.MapFrom(src => DateTime.Parse(src.DateTime)))
+				.ForMember(dest => dest.Id, x => x.Ignore())
+				.ForMember(dest => dest.UserId, x => x.Ignore());
 		}
 	}
 }
