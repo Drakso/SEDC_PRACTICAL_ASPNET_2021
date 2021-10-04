@@ -1,0 +1,55 @@
+﻿@model RegisterViewModel
+
+<h1>REGISTER - Please fill in our info:</h1>
+		@*public string Username { get; set; }
+		public string Password { get; set; }
+		public string ConfirmPassword { get; set; }
+		public string Email { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get; set; }*@
+<form asp-controller="users" asp-action="register" method="post">
+	<div class="row">
+		<div class="col-md-4">
+			<input asp-for="Username"
+				   type="text"
+				   placeholder="Username"
+				   class="form-control" />
+		</div>
+		<div class="col-md-4">
+			<input asp-for="Password"
+				   type="password"
+				   placeholder="Password"
+				   class="form-control" />
+		</div>
+		<div class="col-md-4">
+			<input asp-for="ConfirmPassword"
+				   type="password"
+				   placeholder="Confirm PAssword"
+				   class="form-control" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4">
+			<input asp-for="FirstName"
+				   type="text"
+				   placeholder="First Name"
+				   class="form-control" />
+		</div>
+		<div class="col-md-4">
+			<input asp-for="LastName"
+				   type="text"
+				   placeholder="Last Name"
+				   class="form-control" />
+		</div>
+		<div class="col-md-4">
+			<input asp-for="Email"
+				   type="email"
+				   placeholder="Email"
+				   class="form-control" />
+		</div>
+	</div>
+
+	<button class="btn btn-success" type="submit">Register</button>
+</form>
+
+<h3><a asp-controller="users" asp-action="login">Already have an account?</a></h3>

@@ -1,0 +1,24 @@
+﻿@model LoginViewModel
+
+<h1>Welcome to the RemindersApp</h1>
+
+<form asp-controller="users" asp-action="login" method="post">
+	<div class="row">
+		<div class="col-md-6">
+			<input asp-for="Username"
+				   type="text"
+				   placeholder="Username"
+				   class="form-control" />
+		</div>
+		<div class="col-md-6">
+			<input asp-for="Password"
+				   type="password"
+				   placeholder="Password"
+				   class="form-control" />
+		</div>
+	</div>
+
+	<button class="btn btn-success" type="submit">Log In</button>
+</form>
+
+<h3>New here? <a asp-controller="users" asp-action="register">Please Register</a></h3>

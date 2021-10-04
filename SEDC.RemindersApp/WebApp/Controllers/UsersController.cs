@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +11,15 @@ namespace WebApp.Controllers
 {
 	public class UsersController : Controller
 	{
+		private readonly IUserService _userService;
+		private readonly IMapper _mapper;
+
+		public UsersController(IUserService userService, IMapper mapper)
+		{
+			_userService = userService;
+			_mapper = mapper;
+		}
+
 		// The user asks for the login page
 		// This action provides the page to the user
 		[HttpGet]
@@ -22,8 +33,14 @@ namespace WebApp.Controllers
 		[HttpPost]
 		public IActionResult Login(LoginViewModel model)
 		{
+			var loggedInUser = _userService.LogIn(_mapper.Map<UserDTO>(model));
+			if (loggedInUser == null) return View("AppError", new AppErrorViewModel()
+			{
+				Title = "Login Failed",
+				Description = "Incorrect username or password was entered. Please make sure that you have an account and that you are entering your username and password correctly!"
+			});
 
-			return View();
+			return RedirectToAction("Index", "Reminders");
 		}
 
 		[HttpGet]
@@ -35,8 +52,14 @@ namespace WebApp.Controllers
 		[HttpPost]
 		public IActionResult Register(RegisterViewModel model)
 		{
+			var loggedInUser = _userService.Register(_mapper.Map<UserDTO>(model));
+			if (loggedInUser == null) return View("AppError", new AppErrorViewModel()
+			{
+				Title = "Register Failed",
+				Description = "Registering was not successfull! Please make sure you don't already have an account and that the data you provided is correct!"
+			});
 
-			return View();
+			return RedirectToAction("Index", "Reminders");
 		}
 	}
 }

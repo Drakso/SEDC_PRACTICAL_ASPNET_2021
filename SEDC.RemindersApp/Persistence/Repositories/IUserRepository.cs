@@ -12,6 +12,7 @@ namespace Persistence.Repositories
 		IEnumerable<User> GetAll();
 		User GetById(int id);
 		User GetByLoginInfo(string username, string password);
+		User GetByUniqueIdentifier(string username, string email);
 		int Insert(User user);
 		int Update(User user);
 		int Delete(int id);

@@ -31,9 +31,15 @@ namespace Application
 
 		public User Register(UserDTO user)
 		{
-			var entity = _mapper.Map<User>(user);
-			_userRepository.Insert(entity);
-			return LogIn(user);
+			var existingUser = _userRepository.GetByUniqueIdentifier(user.Username, user.Email);
+			if(existingUser == null)
+			{
+				var entity = _mapper.Map<User>(user);
+				_userRepository.Insert(entity);
+				return LogIn(user);
+			}
+
+			return null;
 		}
 
 

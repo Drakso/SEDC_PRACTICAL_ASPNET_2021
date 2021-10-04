@@ -30,6 +30,11 @@ namespace Persistence.Repositories
 			return _context.Users.FirstOrDefault(x => x.Username == username && x.Password == password);
 		}
 
+		public User GetByUniqueIdentifier(string username, string email)
+		{
+			return _context.Users.FirstOrDefault(x => x.Username == username || x.Email == email);
+		}
+
 		public int Insert(User user)
 		{
 			_context.Users.Add(user);
