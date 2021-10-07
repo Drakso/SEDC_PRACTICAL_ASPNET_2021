@@ -19,3 +19,12 @@
 > Remember: You need to install the neccecary nugets
 
 > Note: If you are using localDB like I did, open the Server Explorer and add the "(localdb)\MSSQLLocalDB" as a server to find your database
+
+## Phase 3
+* CReate a service layer for the IDEA entity that uses the repositories to:
+  * Add
+  * Remove
+  * Update
+  * Delete 
+* Implement mapping ( Any way you see fit. EX: Automapper, your own mapper etc )
+* Register all services, repositories and context with Dependency Injection
