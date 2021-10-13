@@ -1,5 +1,6 @@
 using Application;
 using Application.Configurations;
+using Infrastrucutre.Notifications;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -45,8 +46,10 @@ namespace WebApp
 			var appSettings = appConfig.Get<AppSettings>();
 
 			services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+			services.AddHttpClient<INotificationService, NotificationService>();
+			services.AddTransient<INotificationService, NotificationService>();
 			DiModule.Register(services, appSettings.ConnectionString);
-
+			
 			// Add automapper configuration for dependency Injection
 			// When you request in constructor for IMapper you will get a Mapper with configurations from all MappingProfile classes that you insert here
 			services.AddAutoMapper(typeof(Application.Configurations.MappingProfile), typeof(WebApp.Configurations.MappingProfile));

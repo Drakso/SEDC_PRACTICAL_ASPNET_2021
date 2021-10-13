@@ -18,6 +18,7 @@ namespace Services.Helpers
 		{
 			services.AddTransient<IReceiverService, ReceiverService>();
 			services.AddTransient<ISenderService, SenderService>();
+			services.AddTransient<IAuthenticationHelper, AuthenticationHelper>();
 
 			return services;
 		}

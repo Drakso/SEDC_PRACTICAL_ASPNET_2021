@@ -46,5 +46,10 @@ namespace Application
 			if (result == 1) return true;
 			return false;
 		}
+
+		public ReminderDTO GetById(int reminderId)
+		{
+			return _mapper.Map<ReminderDTO>(_reminderRepository.GetById(reminderId));
+		}
 	}
 }

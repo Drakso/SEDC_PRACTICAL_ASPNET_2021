@@ -8,7 +8,60 @@
 <div class="row" style="background-color: @reminder.Color;">
 	<div class="col-md-2">@reminder.PriorityName</div>
 	<div class="col-md-3">@reminder.Title</div>
-	<div class="col-md-4">@reminder.Description</div>
-	<div class="col-md-3">@reminder.DateTime</div>
+	<div class="col-md-3">@reminder.Description</div>
+	<div class="col-md-2">@reminder.DateTime</div>
+	<div class="col-md-2"><button type="button" data-id="@reminder.Id" class="notify btn btn-info" data-toggle="modal" data-target="#notificationModal">Send Notification</button></div>
 </div>
 }
+
+<div id="notificationModal" class="modal" tableindex="-1" role="dialog">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5>Send Notification</h5>
+			</div>
+			<div class="modal-body">
+				<div class="form-group">
+					<label>Email</label>
+					<input type="text" id="email" class="form-control" />
+				</div>
+				<div class="modal-footer">
+					<button id="send" class="btn btn-primary">Send</button>
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+@*Jquery Slim comes with Bootstrap and is already integrated with this asp.net core app. 
+But Jquery Slim does not contain some features such as AJAX calls. That is why we are adding it here as a hack*@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+		crossorigin="anonymous"></script>
+
+<script>
+	$(document).ready(function () {
+		$(".notify").on("click", function (e) {
+			var thisDataId = $(this).attr("data-id");
+			$("#send").attr("data-id", thisDataId)
+		})
+
+		$("#send").on("click", function (e) {
+			var data = {
+				reminderId: $(this).attr("data-id"),
+				email: $("#email").val()
+			}
+
+			$.ajax({
+				type: "POST",
+				url: "@Url.Action("SendNotification", "Reminders")",
+				contentType: "application/json; charset=utf-8",
+				data: JSON.stringify(data),
+				success: function () {
+					$("#notificationModal").modal("hide");
+				}
+			})
+		})
+
+	})
+</script>

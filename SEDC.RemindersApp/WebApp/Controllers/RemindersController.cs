@@ -2,6 +2,7 @@
 using Application.Services;
 using Application.Utilities;
 using AutoMapper;
+using Infrastrucutre.Notifications;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -16,14 +17,16 @@ namespace WebApp.Controllers
 		private readonly IAuthenticationService _authenticationService;
 		private readonly IReminderService _reminderService;
 		private readonly IMapper _mapper;
+		private readonly INotificationService _notificationService;
 		private readonly string _token = "token";
 
 		public RemindersController(IReminderService reminderService, IMapper mapper, 
-			IAuthenticationService authenticationService)
+			IAuthenticationService authenticationService, INotificationService notificationService)
 		{
 			_reminderService = reminderService;
 			_mapper = mapper;
 			_authenticationService = authenticationService;
+			_notificationService = notificationService;
 		}
 
 		public IActionResult Index()
@@ -60,6 +63,21 @@ namespace WebApp.Controllers
 			_reminderService.Insert(newReminder);
 
 			return RedirectToAction("Index", "Reminders");
+		}
+
+		[HttpPost]
+		public IActionResult SendNotification([FromBody] NotificationViewModel notificationVm)
+		{
+			var reminder = _reminderService.GetById(notificationVm.ReminderID);
+			var notification = new Notification()
+			{
+				Email = notificationVm.Email,
+				Subject = reminder.Title,
+				Text = reminder.Description
+			};
+
+			_notificationService.SendNotification(notification);
+			return Ok();
 		}
 	}
 }

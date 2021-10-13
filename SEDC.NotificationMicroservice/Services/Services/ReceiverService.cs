@@ -32,7 +32,10 @@ namespace Services.Services
 
 			// We change the IsSent property to all entities we found to be matching to ids, to true
 			// This will change the logic to suggest that all of these notifications are already sent
-			entities.ToList().ForEach(x => x.IsSent = true);
+			entities.ToList().ForEach(x => {
+				x.IsSent = true;
+				x.DateSent = DateTime.Now;
+				});
 			// We update the DB with the changes we made
 			_notificationRepository.Update(entities);
 		}

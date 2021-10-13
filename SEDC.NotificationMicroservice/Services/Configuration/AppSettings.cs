@@ -9,5 +9,8 @@ namespace Services.Configuration
 	public class AppSettings
 	{
 		public string ConnectionString { get; set; }
+		public string Secret { get; set; }
+		public string RemindersIdentificationKey { get; set; }
+		public string RemindersAppName { get; set; }
 	}
 }

@@ -11,5 +11,6 @@ namespace Application
 		List<ReminderDTO> GetAll(int userId);
 		bool Insert(ReminderDTO reminder);
 		bool Delete(int reminderId);
+		ReminderDTO GetById(int reminderId);
 	}
 }

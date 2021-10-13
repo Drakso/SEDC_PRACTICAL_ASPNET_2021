@@ -22,9 +22,8 @@ namespace Services.Helpers
 				Subject = src.Subject,
 				Text = src.Text,
 				Email = src.Email,
-				IsSent = src.IsSent,
+				IsSent = false,
 				DateCreated = DateTime.Now,
-				DateSent = src.DateSent
 			};
 		}
 
@@ -44,8 +43,6 @@ namespace Services.Helpers
 				Subject = src.Subject,
 				Text = src.Text,
 				Email = src.Email,
-				IsSent = src.IsSent,
-				DateSent = src.DateSent
 			};
 		}
 		public static IEnumerable<NotificationDto> Map(this IEnumerable<Notification> src)
