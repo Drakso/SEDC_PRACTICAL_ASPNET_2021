@@ -28,3 +28,9 @@
   * Delete 
 * Implement mapping ( Any way you see fit. EX: Automapper, your own mapper etc )
 * Register all services, repositories and context with Dependency Injection
+
+## Phase 4
+* Crate a UI that allows a user to:
+  * See all ideas
+  * Delete an idea
+  * Add a new idea
