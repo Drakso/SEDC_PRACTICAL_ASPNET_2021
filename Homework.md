@@ -34,3 +34,18 @@
   * See all ideas
   * Delete an idea
   * Add a new idea
+
+## Bonus tasks
+* Implement users and connect ideas to users
+  * Login and register page
+  * No authentication yet, just login, register and redirecting to ideas page
+* Implement validations
+  * User can't leave any field empty for an idea
+  * Dates should be atuomatically aded
+  * Title should be longer than 3 characters
+* Implement exception handling
+  * Handling of planend exceptions such as failed validation
+  * Handling of unplanned exceptions ( general exception )
+  * Return error page
+ * Implement logging in a file with some library
+ * Implement some form of authentication of users
